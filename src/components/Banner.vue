@@ -1,7 +1,5 @@
 <template>
-    <div>
-        banner
-    </div>
+
 </template>
 
 <script setup>

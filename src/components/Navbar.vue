@@ -1,10 +1,12 @@
 <template>
-    <nav class="flex flex-row justify-between items-center">
+    <nav class="flex flex-row justify-between items-center relative">
         <div class="logo basis-2/6 text-center text-xl font-semibold cursor-pointer">
             HuyDVQ
         </div>
 
-        <ul id="top-nav" class="basis-3/6 hidden lg:flex lg:items-center lg:justify-end lg:gap-16 uppercase text-base font-bold mb-0">
+        <ul id="top-nav"
+            class="basis-3/6 lg:flex lg:items-center lg:justify-end lg:gap-16 uppercase text-base font-bold mb-0"
+            :class="{ 'hidden': isHiden, 'top-nav-expanded': !isHiden}">
             <li class="top-nav-item">
                 <a>Home</a>
             </li>
@@ -35,19 +37,35 @@
 </template>
 
 
-<script setup>
-const topNav = document.getElementById('top-nav')
-const toggleTopNavIcon = document.getElementById('toggle-top-nav-icon')
+<script>
+export default {
+    data() {
+        return {
+            isHiden: true
+        }
+    },
+    mounted: function () {
+        this.$el.addEventListener('click', this.onClick)
+    },
+    methods: {
+        onClick: function (ev) {
+            let idShow = ev.target.id
+            if (idShow == 'toggle-top-nav-icon') {
+                return this.isHiden = !this.isHiden;
+            } else {
+                if(this.isHiden){
+                    return this.isHiden = !this.isHiden;
+                }
+                console.log(this.isHiden);
+                console.log('123');
 
-// document.addEventListener('click', (el) => {
-//     if (toggleTopNavIcon.contains(el.target)) {
-//         console.log('123')
-//     } else {
-//         // if(topNav){
+            }
+            
+        },
+        
+    },
 
-//         // }
-//     }
-// })
+};
 </script>
 
 <style scoped></style>
