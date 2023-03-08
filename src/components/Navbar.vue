@@ -6,7 +6,7 @@
 
         <ul id="top-nav"
             class="basis-3/6 lg:flex lg:items-center lg:justify-end lg:gap-16 uppercase text-base font-bold mb-0"
-            :class="{ 'hidden': isHiden, 'top-nav-expanded': !isHiden}">
+            :class="{ 'hidden': isHiden, 'top-nav-expanded': topNavExpanded }">
             <li class="top-nav-item">
                 <a>Home</a>
             </li>
@@ -22,7 +22,7 @@
             <li class="top-nav-item">
                 <a>Blog</a>
             </li>
-            <li class="top-nav-item">
+            <li class="top-nav-item top-nav-item-active">
                 <a>Contact</a>
             </li>
         </ul>
@@ -41,28 +41,45 @@
 export default {
     data() {
         return {
-            isHiden: true
+            isHiden: true,
+            topNavExpanded: false,
         }
     },
+
     mounted: function () {
-        this.$el.addEventListener('click', this.onClick)
+        window.addEventListener('click', this.clickToggleTopNav);
+        window.addEventListener("resize", this.resizeBrowserHandler);
+    },
+    unmounted() {
+        window.removeEventListener('resize', this.clickToggleTopNav);
+        window.removeEventListener('resize', this.resizeBrowserHandler);
     },
     methods: {
-        onClick: function (ev) {
+        clickToggleTopNav: function (ev) {
             let idShow = ev.target.id
             if (idShow == 'toggle-top-nav-icon') {
-                return this.isHiden = !this.isHiden;
+                this.isHiden = !this.isHiden;
+                this.topNavExpanded = !this.topNavExpanded;
             } else {
-                if(this.isHiden){
-                    return this.isHiden = !this.isHiden;
+                if (!this.isHiden) {
+                    this.isHiden = !this.isHiden;
+                    this.topNavExpanded = !this.topNavExpanded;
                 }
-                console.log(this.isHiden);
-                console.log('123');
-
             }
-            
+
         },
-        
+        resizeBrowserHandler(e) {
+            if (e.target.innerWidth < 1023) {
+                this.isHiden = !this.isHiden;
+                this.topNavExpanded = !this.topNavExpanded;
+            } else {
+                if (!this.isHiden) {
+                    this.isHiden = !this.isHiden;
+                    this.topNavExpanded = !this.topNavExpanded;
+                }
+            }
+        }
+
     },
 
 };
