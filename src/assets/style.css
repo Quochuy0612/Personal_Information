@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .top-nav-expanded {
-@apply absolute top-20 z-50 w-full bg-white text-center animate-sildeDown ;
+@apply absolute top-20 z-50 w-full bg-white text-center animate-sildeDown;
 }
 
 .top-nav-item {

@@ -21,7 +21,7 @@ module.exports = {
         }
       },
       animation: {
-        sildeDown: 'wiggle 1s ease-in-out',
+        sildeDown: 'sildeDown .4s ease-in-out',
       }
     },
   },

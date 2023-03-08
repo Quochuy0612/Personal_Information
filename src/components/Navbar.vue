@@ -22,7 +22,7 @@
             <li class="top-nav-item">
                 <a>Blog</a>
             </li>
-            <li class="top-nav-item top-nav-item-active">
+            <li class="top-nav-item">
                 <a>Contact</a>
             </li>
         </ul>
